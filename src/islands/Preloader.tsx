@@ -9,7 +9,7 @@ export default function Preloader() {
 
   onMount(() => {
     const controls = animate(0, 100, {
-      duration: 0.8,
+      duration: 0.6,
       ease: 'easeInOut',
       onUpdate: (v) => {
         fill.style.transform = `scaleX(${v / 100})`;
