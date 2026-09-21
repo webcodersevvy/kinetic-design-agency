@@ -1,7 +1,7 @@
 import { onCleanup, onMount } from 'solid-js';
 import { prefersReducedMotion } from '../lib/browser';
 
-const IDLE_MS = 2500;
+const IDLE_MS = 1800;
 
 /**
  * Ambient — global idle detector. After 8s without input the page is marked
