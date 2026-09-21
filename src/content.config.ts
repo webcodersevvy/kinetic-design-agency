@@ -12,7 +12,7 @@ const work = defineCollection({
     tag: z.string(),
     tagDark: z.string(),
     excerpt: z.string(),
-    cover: z.string().url(),
+    cover: z.url(),
     coverAlt: z.string(),
     featured: z.boolean().default(false),
     views: z.string().optional(),
@@ -26,7 +26,7 @@ const journal = defineCollection({
     category: z.string(),
     minutes: z.string(),
     excerpt: z.string(),
-    cover: z.string().url(),
+    cover: z.url(),
     coverAlt: z.string(),
     date: z.string(),
   }),
@@ -38,7 +38,7 @@ const testimonials = defineCollection({
     quote: z.string(),
     name: z.string(),
     role: z.string(),
-    avatar: z.string().url(),
+    avatar: z.url(),
   }),
 });
 

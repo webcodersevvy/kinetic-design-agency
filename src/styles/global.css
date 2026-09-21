@@ -166,7 +166,8 @@ header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
 .hero-bottom { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: start; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
 .hero-desc { max-width: 44ch; color: #bfbab0; font-size: 16px; }
 .hero-desc strong { color: #fff; }
-.hero-stats { display: flex; gap: 26px; flex-wrap: wrap; }
+.hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+/* fixed columns: growing count-up numbers can never reflow siblings */
 .hero-stats div b { display: block; font-family: var(--f-display); font-size: 28px; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: 0.01em; color: #fff; }
 /* count spans must beat the label rule below (equal specificity loses by order) */
 .hero-stats div b span { font-family: var(--f-display); font-size: 28px; letter-spacing: 0.01em; color: #fff; }

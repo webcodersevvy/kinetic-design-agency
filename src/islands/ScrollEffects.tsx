@@ -105,7 +105,8 @@ export default function ScrollEffects() {
         if (killed || !ScrollTrigger) return;
 
         ctx = gsap.context(() => {
-          // 1) Sticky zoom hero reveal
+          // 1) Sticky zoom hero reveal (deferred render: nothing is written
+          // to the hero until scroll progress actually moves)
           const title = document.querySelector('.hero-title');
           const inner = document.querySelector('.hero-inner');
           if (title) {
@@ -115,6 +116,7 @@ export default function ScrollEffects() {
               filter: 'blur(2px)',
               opacity: 0.25,
               ease: 'none',
+              immediateRender: false,
               scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.8 },
             });
           }
@@ -122,6 +124,7 @@ export default function ScrollEffects() {
             gsap.to(inner, {
               y: -60,
               ease: 'none',
+              immediateRender: false,
               scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.8 },
             });
           }
@@ -208,10 +211,6 @@ export default function ScrollEffects() {
               scrollTrigger: { trigger: o, start: 'top bottom', end: 'bottom top', scrub: 1.2 } });
           });
         });
-
-        const onRefresh = () => ScrollTrigger.refresh();
-        window.addEventListener('load', onRefresh, { once: true });
-        onCleanup(() => window.removeEventListener('load', onRefresh));
       } catch {
         mani?.querySelectorAll('.w').forEach((w) => w.classList.add('on'));
       }
