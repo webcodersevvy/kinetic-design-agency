@@ -1,0 +1,18 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+const posts: CollectionEntry<'journal'>[] = (await getCollection('journal')).sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+<div class="journal" id="journal" aria-label="Journal">
+  <div class="sec-head reveal">
+    <div><div class="kicker">Journal — Signal, no noise</div><h2 class="sec-title">Notes in<br /><em>motion</em></h2></div>
+    <a class="btn btn-ghost magnetic" href="/journal/" data-hover>All articles →</a>
+  </div>
+  <div class="j-grid">
+    {posts.map((p) => (
+      <a class="j-card reveal" href={`/journal/${p.id.replace(/\.mdx?$/, '').split('/').pop()}/`} data-hover>
+        <img src={p.data.cover} alt={p.data.coverAlt} loading="lazy" decoding="async" />
+        <div><small>{p.data.category} / {p.data.minutes}</small><h4>{p.data.title}</h4><p>{p.data.excerpt}</p></div>
+      </a>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { artNumeral, paletteVars } from '../../lib/palettes';
+
+const work: CollectionEntry<'work'>[] = (await getCollection('work')).sort((a, b) => b.data.year.localeCompare(a.data.year));
+---
+<BaseLayout title="Work — KINETIC® NYC" description="Selected brand worlds, films and interactive sites by KINETIC NYC." path="/work/">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="kicker">Selected work — 2024 → 2026</div>
+      <h1 class="sec-title">Work that<br /><em>moves people</em></h1>
+      <div class="page-grid">
+        {work.map((w, i) => (
+          <article class="proj" data-cursor="View case" style={`min-height:380px;${paletteVars(i)}`}>
+            <div class="proj-art" aria-hidden="true">
+              <span class="proj-num">{artNumeral(i)}</span>
+            </div>
+            <div class="proj-top"><span class="tag">{w.data.tag}</span><span class="tag dark">{w.data.tagDark}</span></div>
+            <a class="proj-info" href={`/work/${w.id.replace(/\.mdx?$/, '').split('/').pop()}/`} style="color:inherit;text-decoration:none">
+              <div><h3>{w.data.title}</h3><p>{w.data.excerpt}</p></div>
+              <span class="proj-arrow" aria-hidden="true">↗</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

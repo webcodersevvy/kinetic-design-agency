@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": ["dist/**", "node_modules/**", ".astro/**", "public/**"],
+  "rules": {
+    "no-unused-vars": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["src/islands/**"],
+      "rules": {
+        "no-unassigned-vars": "off"
+      }
+    },
+    {
+      "files": ["src/env.d.ts"],
+      "rules": {
+        "triple-slash-reference": "off"
+      }
+    }
+  ]
+}

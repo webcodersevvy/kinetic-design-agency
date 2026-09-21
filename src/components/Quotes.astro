@@ -1,0 +1,19 @@
+---
+import QuotesSlider from '../islands/QuotesSlider';
+import VideoScrub from '../islands/VideoScrub';
+type Q = { quote: string; name: string; role: string; avatar: string };
+const { items } = Astro.props as { items: Q[] };
+---
+<div class="quotes" aria-label="Testimonials">
+  <div class="sec-head reveal">
+    <div><div class="kicker">Kind words</div><h2 class="sec-title">Clients on<br /><em>the record</em></h2></div>
+    <div class="quote-nav"><button id="qPrev" data-hover aria-label="Previous quote">←</button><button id="qNext" data-hover aria-label="Next quote">→</button></div>
+  </div>
+  <QuotesSlider client:visible items={items} />
+  <VideoScrub client:visible />
+</div>
+<script>
+  // wire static prev/next buttons to the slider island via custom events
+  document.getElementById('qPrev')?.addEventListener('click', () => document.dispatchEvent(new CustomEvent('quote:prev')));
+  document.getElementById('qNext')?.addEventListener('click', () => document.dispatchEvent(new CustomEvent('quote:next')));
+</script>

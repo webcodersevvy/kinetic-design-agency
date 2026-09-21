@@ -1,0 +1,22 @@
+---
+import { site } from '../lib/site';
+import CtaSection from './CtaSection.astro';
+import ContactSection from './ContactSection.astro';
+---
+<footer>
+  <div data-tone="light">
+    <div class="wrap">
+      <CtaSection />
+    </div>
+  </div>
+  <div data-tone="dark">
+    <div class="wrap">
+      <ContactSection />
+    </div>
+  </div>
+  <div class="wrap foot">
+    <span><b>KINETIC®</b> — © 2026 · SoHo, NYC</span>
+    <span>{site.coords} — Made to move</span>
+    <span><a href="#top" data-hover style="color:var(--lime)">Back to top ↑</a></span>
+  </div>
+</footer>

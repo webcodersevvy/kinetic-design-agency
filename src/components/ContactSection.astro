@@ -1,0 +1,18 @@
+---
+import ContactForm from '../islands/ContactForm';
+---
+<div class="contact" id="contact" aria-label="Contact">
+  <div class="contact-grid">
+    <div class="form-card reveal">
+      <h3>Start a project</h3>
+      <p>Avg. reply time: 6 hours on weekdays. NDA-friendly.</p>
+      <ContactForm client:visible />
+    </div>
+    <div class="info-card reveal">
+      <div><h4>Prefer email?</h4><a class="big" href="mailto:hello@kinetic.nyc" data-hover>hello@kinetic.nyc</a></div>
+      <div><h4>New business — NYC</h4><a class="big" href="tel:+12125550147" data-hover>+1 212 555 0147</a></div>
+      <div><h4>Follow the motion</h4><div class="socials"><a href="https://www.instagram.com/" target="_blank" rel="noopener" data-hover>Instagram ↗</a><a href="https://vimeo.com/" target="_blank" rel="noopener" data-hover>Vimeo ↗</a><a href="https://www.behance.net/" target="_blank" rel="noopener" data-hover>Behance ↗</a><a href="https://www.linkedin.com/" target="_blank" rel="noopener" data-hover>LinkedIn ↗</a><a href="https://x.com/" target="_blank" rel="noopener" data-hover>X ↗</a></div></div>
+      <div style="margin-top:auto;border:1px dashed rgba(255,255,255,.2);border-radius:12px;padding:14px;font-family:var(--f-mono);font-size:12px;line-height:1.7;color:#B9B5AB">Currently booking: <b style="color:var(--lime)">2 slots for Aug ’26</b> — 1 brand world + 1 launch film. First-come, best-animated.</div>
+    </div>
+  </div>
+</div>

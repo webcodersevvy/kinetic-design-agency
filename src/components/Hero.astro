@@ -1,0 +1,32 @@
+---
+import HeroScene from '../islands/HeroScene';
+---
+<section class="hero" id="hero" data-tone="dark" aria-label="Kinetic intro">
+  <HeroScene client:load />
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="loc"><i>● NYC</i><span>Independent design &amp; motion studio — SoHo, New York</span></div>
+      <div>EST <span data-clock-hero id="heroClock">00:00:00</span> — 40.7128°N, 74.0060°W</div>
+      <div>Showreel ’26 — 01:48 ⏺</div>
+    </div>
+    <h1 class="hero-title">
+      <span class="row"><span>WE MAKE</span></span>
+      <span class="row"><span><span class="outline">BRANDS</span> <span class="lime">MOVE</span><span class="italic-accent"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=200&q=80&auto=format&fit=crop" alt="" loading="eager" fetchpriority="high" /></span></span></span>
+      <span class="row"><span>&amp; PEOPLE FEEL<span style="color:var(--orange)">.</span></span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Kinetic is a <strong>design &amp; motion agency in New York City</strong> crafting identities, films, websites and 3D worlds that refuse to sit still. From startups to Spotify-scale — we concept, design, animate &amp; ship.</p>
+      <div class="hero-stats">
+        <div><b><span data-count="340">0</span></b><span>Projects shipped</span></div>
+        <div><b><span data-count="27">0</span><i>×</i></b><span>Global awards</span></div>
+        <div><b><span data-count="98">0</span><i>%</i></b><span>Repeat clients</span></div>
+      </div>
+      <div class="showreel">
+        <button class="play magnetic" id="playBtn" data-hover data-cursor="Play" aria-label="Play showreel">▶</button>
+        <small>Watch<br />showreel ’26<br /><u style="color:var(--lime)">1 min 48 sec</u></small>
+      </div>
+    </div>
+  </div>
+</section>

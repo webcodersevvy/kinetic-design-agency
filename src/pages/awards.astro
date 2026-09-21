@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AwardsSection from '../components/AwardsSection.astro';
+---
+<BaseLayout title="Awards — KINETIC® NYC" description="D&AD, Cannes Lions, FWA, Awwwards — the Kinetic shelf keeps growing." path="/awards/">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="kicker">Recognition</div>
+      <h1 class="sec-title">Award shelf<br /><em>keeps growing</em></h1>
+    </div>
+  </section>
+  <section class="block tone-graphite" data-tone="dark" aria-label="Awards">
+    <div class="wrap">
+      <AwardsSection />
+    </div>
+  </section>
+</BaseLayout>

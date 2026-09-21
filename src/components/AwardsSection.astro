@@ -1,0 +1,22 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+type Props = { home?: boolean };
+const { home = false } = Astro.props as Props;
+const awards: CollectionEntry<'awards'>[] = (await getCollection('awards')).sort((a, b) => b.data.year.localeCompare(a.data.year));
+---
+<div class="awards" id="awards" aria-label="Awards">
+  <div class="sec-head reveal">
+    <div><div class="kicker">Recognition</div><h2 class="sec-title">Award shelf<br /><em>keeps growing</em></h2></div>
+    <a class="btn btn-ghost magnetic" href={home ? '#contact' : '/#contact'} data-hover>Become next →</a>
+  </div>
+  <div class="reveal">
+    {awards.map((a) => (
+      <div class="award-row" data-hover>
+        <span class="yr">{a.data.year}</span>
+        <strong>{a.data.title}</strong>
+        <span class="org">{a.data.org}</span>
+        <span class="count">{a.data.count}</span>
+      </div>
+    ))}
+  </div>
+</div>

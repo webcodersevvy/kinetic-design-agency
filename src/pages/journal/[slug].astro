@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const posts: CollectionEntry<'journal'>[] = await getCollection('journal');
+  return posts.map((entry) => ({
+    params: { slug: entry.id.replace(/\.mdx?$/, '').split('/').pop() as string },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = { entry: CollectionEntry<'journal'> };
+const { entry } = Astro.props as Props;
+const { Content } = await render(entry);
+---
+<BaseLayout
+  title={`${entry.data.title} — KINETIC® Journal`}
+  description={entry.data.excerpt}
+  path={`/journal/${entry.id.replace(/\.mdx?$/, '').split('/').pop()}/`}
+  image={entry.data.cover}
+  articleDate={entry.data.date}
+>
+  <section class="page-hero">
+    <div class="wrap" style="max-width:900px">
+      <div class="kicker">{entry.data.category} / {entry.data.minutes} — {entry.data.date}</div>
+      <h1 class="sec-title" style="font-size:clamp(32px,4.5vw,56px)">{entry.data.title}</h1>
+      <img src={entry.data.cover} alt={entry.data.coverAlt} style="width:100%;border-radius:18px;margin:22px 0" fetchpriority="high" />
+      <article style="color:#cfcbc2;font-size:17px;line-height:1.7">
+        <Content />
+      </article>
+      <a class="btn btn-ghost magnetic" href="/journal/" data-hover style="margin-top:28px">← All articles</a>
+    </div>
+  </section>
+</BaseLayout>

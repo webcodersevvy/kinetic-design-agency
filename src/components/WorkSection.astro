@@ -1,0 +1,17 @@
+---
+import WorkGrid from '../islands/WorkGrid';
+type Card = { slug: string; title: string; tag: string; tagDark: string; excerpt: string; categories: string[]; art: number };
+const { items } = Astro.props as { items: Card[] };
+---
+<div class="work-sec">
+  <div class="sec-head reveal">
+    <div>
+      <div class="kicker">Selected work — 2024 → 2026</div>
+      <h2 class="sec-title">Work that<br /><em>moves people</em></h2>
+    </div>
+    <div>
+      <p>Brand worlds, title sequences, product films and interactive sites. Filter by discipline — hover to preview, click to dive in.</p>
+    </div>
+  </div>
+  <WorkGrid client:visible items={items} />
+</div>

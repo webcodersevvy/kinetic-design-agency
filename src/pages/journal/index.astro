@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const posts: CollectionEntry<'journal'>[] = (await getCollection('journal')).sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+<BaseLayout title="Journal — KINETIC® NYC" description="Notes in motion: process, 3D and culture from the Kinetic studio." path="/journal/">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="kicker">Journal — Signal, no noise</div>
+      <h1 class="sec-title">Notes in<br /><em>motion</em></h1>
+      <div class="page-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+        {posts.map((p) => (
+          <a class="j-card" href={`/journal/${p.id.replace(/\.mdx?$/, '').split('/').pop()}/`} data-hover>
+            <img src={p.data.cover} alt={p.data.coverAlt} loading="lazy" decoding="async" />
+            <div><small>{p.data.category} / {p.data.minutes}</small><h4>{p.data.title}</h4><p>{p.data.excerpt}</p></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+import { site } from '../lib/site';
+
+type Props = {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  noindex?: boolean;
+  articleDate?: string;
+};
+const {
+  title = site.title,
+  description = site.description,
+  path = '/',
+  image = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80&auto=format&fit=crop',
+  noindex = false,
+  articleDate,
+} = Astro.props as Props;
+const canonical = new URL(path, site.url).toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': articleDate ? 'Article' : 'Organization',
+  ...(articleDate
+    ? { headline: title, description, datePublished: articleDate, author: { '@type': 'Organization', name: site.name } }
+    : {
+        name: site.name,
+        url: site.url,
+        description,
+        address: site.address,
+        email: site.email,
+        telephone: site.phone,
+        sameAs: ['https://instagram.com', 'https://vimeo.com', 'https://behance.net', 'https://linkedin.com'],
+      }),
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+<meta property="og:type" content={articleDate ? 'article' : 'website'} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:locale" content={site.locale} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="theme-color" content="#0A0A0B" />
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

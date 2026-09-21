@@ -1,0 +1,17 @@
+---
+type Props = { items: string[]; id: string; lime?: boolean; duration?: number };
+const { items, id, lime = false, duration = 28 } = Astro.props as Props;
+// One half repeated enough times to always exceed the viewport; the second
+// identical half makes translateX(-50%) loop seamlessly.
+const half = [...items, ...items, ...items];
+---
+<div class={lime ? 'marquee marquee-lime' : 'marquee'}>
+  <div class="marquee-track" id={id} style={`--marquee-dur:${duration}s`}>
+    <div class="marquee-half" aria-hidden="false">
+      {half.map((t) => <span><i>●</i>{t}</span>)}
+    </div>
+    <div class="marquee-half" aria-hidden="true">
+      {half.map((t) => <span><i>●</i>{t}</span>)}
+    </div>
+  </div>
+</div>
