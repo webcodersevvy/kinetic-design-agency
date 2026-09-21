@@ -98,13 +98,18 @@ export default function ScrollEffects() {
       };
     }
 
-    (async () => {
-      try {
-        const { ensureGsap } = await import('../lib/browser');
-        const { gsap, ScrollTrigger } = await ensureGsap();
-        if (killed || !ScrollTrigger) return;
+    // ---- GSAP scroll cinema: initialized lazily on first scroll.
+    // Every scrubbed effect rests at its natural (SSR-painted) state at
+    // scroll 0, so nothing needs measuring before the user moves. This keeps
+    // GSAP's setup/measurement cycle out of the load window entirely.
+    const initGsapFX = () => {
+      (async () => {
+        try {
+          const { ensureGsap } = await import('../lib/browser');
+          const { gsap, ScrollTrigger } = await ensureGsap();
+          if (killed || !ScrollTrigger) return;
 
-        ctx = gsap.context(() => {
+          ctx = gsap.context(() => {
           // 1) Sticky zoom hero reveal (deferred render: nothing is written
           // to the hero until scroll progress actually moves)
           const title = document.querySelector('.hero-title');
@@ -210,14 +215,32 @@ export default function ScrollEffects() {
             gsap.to(o, { y: i === 0 ? -24 : 24, rotation: i === 0 ? -12 : 10, ease: 'none',
               scrollTrigger: { trigger: o, start: 'top bottom', end: 'bottom top', scrub: 1.2 } });
           });
-        });
-      } catch {
-        mani?.querySelectorAll('.w').forEach((w) => w.classList.add('on'));
-      }
-    })();
+          });
+        } catch {
+          mani?.querySelectorAll('.w').forEach((w) => w.classList.add('on'));
+        }
+      })();
+    };
+
+    let cancelFirstScroll: (() => void) | null = null;
+    if (window.scrollY > 0) {
+      // restored mid-page (anchor/back-nav): measure now, layout is final
+      initGsapFX();
+    } else {
+      // otherwise wait for the first scroll — no timer fallback: without
+      // scrolling nothing scroll-driven is needed, and the load window
+      // stays free of measurement work
+      const onFirstScroll = () => {
+        cancelFirstScroll?.();
+        initGsapFX();
+      };
+      window.addEventListener('scroll', onFirstScroll, { passive: true });
+      cancelFirstScroll = () => window.removeEventListener('scroll', onFirstScroll);
+    }
 
     onCleanup(() => {
       killed = true;
+      cancelFirstScroll?.();
       stops.forEach((fn) => fn());
       magClean.forEach((fn) => fn());
       try { ctx?.revert(); } catch { /* noop */ }
