@@ -17,14 +17,14 @@ export default function Preloader() {
       },
       onComplete: () => {
         pre.classList.add('done');
-        setTimeout(() => pre.remove(), 900);
+        setTimeout(() => pre.remove(), 600);
       },
     });
     // hard cap: never trap the user behind the loader
     const cap = setTimeout(() => {
       controls.stop();
       pre.classList.add('done');
-      setTimeout(() => pre.remove(), 900);
+      setTimeout(() => pre.remove(), 600);
     }, 6000);
     onCleanup(() => {
       clearTimeout(cap);

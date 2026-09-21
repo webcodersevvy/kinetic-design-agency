@@ -104,7 +104,7 @@ img { display: block; max-width: 100%; }
   position: fixed; inset: 0; z-index: 10000; background: #000;
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 18px;
-  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 #preloader.done { transform: translateY(-101%); }
 #preloader .pre-logo { font-family: var(--f-display); font-size: clamp(48px, 9vw, 120px); line-height: 0.9; letter-spacing: 0.01em; }
