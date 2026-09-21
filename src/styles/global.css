@@ -474,6 +474,17 @@ footer { padding: 0 0 28px; }
 .mrow .lime { color: var(--lime); }
 .mstage-foot { margin-top: 30px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #cfc8f5; }
 .mstage-badge { width: 92px; height: 92px; border-radius: 50%; background: var(--lime); color: #000; display: grid; place-items: center; font-family: var(--f-display); font-size: 15px; line-height: 1; text-align: center; will-change: transform; }
+/* ambient idle: perpetual motion sleeps so the viewport settles (Speed Index);
+   the Ambient island removes .is-idle on the next input */
+body.is-idle .marquee-track,
+body.is-idle .play::after,
+body.is-idle .live-dot b,
+body.is-idle .nyc-pin .dot,
+body.is-idle .hero-title .italic-accent img,
+body.is-idle .proj-art::before,
+body.is-idle .proj-art::after {
+  animation-play-state: paused;
+}
 .page-hero { padding: 140px 0 24px; }
 .page-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--lime); color: #000; padding: 10px 16px; z-index: 10001; font-family: var(--f-mono); font-size: 12px; }

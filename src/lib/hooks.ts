@@ -35,6 +35,8 @@ export function useNycClock() {
       }
     };
     const tick = () => {
+      // frozen while ambient-idle so ticking text never churns Speed Index
+      if (document.body.classList.contains('is-idle')) return;
       const t = fmt(new Date());
       document.querySelectorAll('[data-clock-full]').forEach((n) => (n.textContent = t));
       document.querySelectorAll('[data-clock-hero]').forEach((n) => (n.textContent = `${t} EST`));
