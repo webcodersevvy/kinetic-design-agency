@@ -29,6 +29,24 @@ function revealCounts(el: Element) {
  */
 export default function ScrollEffects() {
   onMount(() => {
+    // TEMP-PROBE: trace hero geometry changes (revert after diagnosis)
+    try {
+      const watched = ['section#hero', '.hero-inner', '.hero-title', '.hero-top', '.hero-bottom', '.hero-stats'];
+      watched.forEach((sel) => {
+        const el = document.querySelector(sel) as HTMLElement | null;
+        if (!el) return;
+        let last = el.offsetHeight;
+        new ResizeObserver(() => {
+          const h = el.offsetHeight;
+          if (Math.abs(h - last) > 1) {
+            console.error(`[probe] ${sel} height ${last} -> ${h}`);
+            last = h;
+          }
+        }).observe(el);
+      });
+    } catch {
+      /* noop */
+    }
     let killed = false;
     let ctx: { revert: () => void } | null = null;
     const stops: Array<() => void> = [];
