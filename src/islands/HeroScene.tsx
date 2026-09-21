@@ -21,15 +21,24 @@ export default function HeroScene() {
     let raf = 0;
     let visible = true;
     let lastFrame = 0;
+    let lastInteract = performance.now();
     let mx = 0.5;
     let my = 0.42;
 
+    const poke = () => {
+      lastInteract = performance.now();
+    };
     const onMove = (e: PointerEvent) => {
+      poke();
       const r = hero.getBoundingClientRect();
       mx = (e.clientX - r.left) / Math.max(1, r.width);
       my = 1 - (e.clientY - r.top) / Math.max(1, r.height);
     };
     hero.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerdown', poke, { passive: true });
+    window.addEventListener('wheel', poke, { passive: true });
+    window.addEventListener('keydown', poke);
+    window.addEventListener('touchstart', poke, { passive: true });
 
     const io = new IntersectionObserver((es) => (visible = es[0]?.isIntersecting ?? true));
     io.observe(hero);
@@ -127,8 +136,12 @@ export default function HeroScene() {
 
     const frame = (now: number) => {
       if (visible && !document.hidden) {
-        // coarse devices: 30fps cadence keeps frames under the long-task budget
-        if (!coarse || now - lastFrame >= 33) {
+        // Ambient mode: freeze the canvas after 6s without interaction so the
+        // frame stops changing (fully static tail for Speed Index); any
+        // pointer/key/scroll input resumes full motion instantly.
+        // Coarse devices also render on a 30fps cadence to stay off long tasks.
+        const idleFor = now - lastInteract;
+        if (idleFor < 6000 && (!coarse || now - lastFrame >= 33)) {
           lastFrame = now;
           paint(now);
         }
@@ -144,6 +157,10 @@ export default function HeroScene() {
       cancelAnimationFrame(raf);
       io.disconnect();
       hero.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerdown', poke);
+      window.removeEventListener('wheel', poke);
+      window.removeEventListener('keydown', poke);
+      window.removeEventListener('touchstart', poke);
       window.removeEventListener('resize', resizeGL);
       window.removeEventListener('resize', resizeLines);
       gl?.getExtension('WEBGL_lose_context')?.loseContext();
