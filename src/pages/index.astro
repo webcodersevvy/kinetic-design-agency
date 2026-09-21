@@ -1,97 +1,165 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
-import Manifesto from '../components/Manifesto.astro';
-import WorkSection from '../components/WorkSection.astro';
-import Capabilities from '../components/Capabilities.astro';
-import ProcessSection from '../components/ProcessSection.astro';
-import AwardsSection from '../components/AwardsSection.astro';
-import Quotes from '../components/Quotes.astro';
-import DynamicMotion from '../components/DynamicMotion.astro';
-import NycSection from '../components/NycSection.astro';
-import JournalSection from '../components/JournalSection.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Marquee from "../components/Marquee.astro";
+import Manifesto from "../components/Manifesto.astro";
+import WorkSection from "../components/WorkSection.astro";
+import Capabilities from "../components/Capabilities.astro";
+import ProcessSection from "../components/ProcessSection.astro";
+import AwardsSection from "../components/AwardsSection.astro";
+import Quotes from "../components/Quotes.astro";
+import NycSection from "../components/NycSection.astro";
+import JournalSection from "../components/JournalSection.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
-const work: CollectionEntry<'work'>[] = (await getCollection('work')).sort((a, b) =>
-  Number(b.data.featured) - Number(a.data.featured) || a.data.year.localeCompare(b.data.year),
+const work: CollectionEntry<"work">[] = (await getCollection("work")).sort(
+    (a, b) =>
+        Number(b.data.featured) - Number(a.data.featured) ||
+        a.data.year.localeCompare(b.data.year),
 );
-const testimonials = await getCollection('testimonials');
+const testimonials = await getCollection("testimonials");
 
 const workCards = work.map((w, i) => ({
-  slug: w.id.replace(/\.mdx?$/, '').split('/').pop() as string,
-  title: w.data.title,
-  tag: w.data.tag,
-  tagDark: w.data.tagDark,
-  excerpt: w.data.excerpt,
-  categories: w.data.categories,
-  art: i,
+    slug: w.id
+        .replace(/\.mdx?$/, "")
+        .split("/")
+        .pop() as string,
+    title: w.data.title,
+    tag: w.data.tag,
+    tagDark: w.data.tagDark,
+    excerpt: w.data.excerpt,
+    categories: w.data.categories,
+    art: i,
 }));
 const quotes = testimonials.map((t) => ({
-  quote: t.data.quote,
-  name: t.data.name,
-  role: t.data.role,
-  avatar: t.data.avatar,
+    quote: t.data.quote,
+    name: t.data.name,
+    role: t.data.role,
+    avatar: t.data.avatar,
 }));
 ---
+
 <BaseLayout path="/">
-  <Hero />
+    <Hero />
 
-  <div class="marquee-wrap" data-tone="dark">
-    <Marquee id="mtrack1" duration={32} items={['Nike ✦', 'Spotify ✦', 'A24 ✦', 'Ritual ✦', 'Halcyon ✦', 'MoMA ✦', 'Arc’teryx ✦', 'Vice ✦']} />
-  </div>
-
-  <section class="block tone-cream" data-tone="light" id="studio" aria-label="Manifesto">
-    <div class="wrap">
-      <Manifesto />
+    <div class="marquee-wrap" data-tone="dark">
+        <Marquee
+            id="mtrack1"
+            duration={32}
+            items={[
+                "Nike ✦",
+                "Spotify ✦",
+                "A24 ✦",
+                "Ritual ✦",
+                "Halcyon ✦",
+                "MoMA ✦",
+                "Arc’teryx ✦",
+                "Vice ✦",
+            ]}
+        />
     </div>
-  </section>
 
-  <section class="block tone-sand" data-tone="light" id="work" aria-label="Selected work">
-    <div class="wrap">
-      <WorkSection items={workCards} />
+    <section
+        class="block tone-cream"
+        data-tone="light"
+        id="studio"
+        aria-label="Manifesto"
+    >
+        <div class="wrap">
+            <Manifesto />
+        </div>
+    </section>
+
+    <section
+        class="block tone-sand"
+        data-tone="light"
+        id="work"
+        aria-label="Selected work"
+    >
+        <div class="wrap">
+            <WorkSection items={workCards} />
+        </div>
+    </section>
+
+    <div data-tone="light">
+        <Marquee
+            id="mtrack2"
+            lime
+            duration={24}
+            items={[
+                "Design ✦",
+                "Motion ✦",
+                "3D & CGI ✦",
+                "Interactive ✦",
+                "Branding ✦",
+                "Sound ✦",
+            ]}
+        />
     </div>
-  </section>
 
-  <div data-tone="light">
-    <Marquee id="mtrack2" lime duration={24} items={['Design ✦', 'Motion ✦', '3D & CGI ✦', 'Interactive ✦', 'Branding ✦', 'Sound ✦']} />
-  </div>
+    <section
+        class="block tone-ink"
+        data-tone="dark"
+        id="capabilities"
+        aria-label="Capabilities"
+    >
+        <div class="wrap">
+            <Capabilities />
+        </div>
+    </section>
 
-  <section class="block tone-ink" data-tone="dark" id="capabilities" aria-label="Capabilities">
-    <div class="wrap">
-      <Capabilities />
-    </div>
-  </section>
+    <section
+        class="block tone-paper"
+        data-tone="light"
+        id="process"
+        aria-label="Process"
+    >
+        <div class="wrap">
+            <ProcessSection />
+        </div>
+    </section>
 
-  <section class="block tone-paper" data-tone="light" id="process" aria-label="Process">
-    <div class="wrap">
-      <ProcessSection />
-    </div>
-  </section>
+    <section
+        class="block tone-graphite"
+        data-tone="dark"
+        id="awards"
+        aria-label="Awards"
+    >
+        <div class="wrap">
+            <AwardsSection home />
+        </div>
+    </section>
 
-  <section class="block tone-graphite" data-tone="dark" id="awards" aria-label="Awards">
-    <div class="wrap">
-      <AwardsSection home />
-    </div>
-  </section>
+    <section
+        class="block tone-bone"
+        data-tone="light"
+        id="testimonials"
+        aria-label="Testimonials"
+    >
+        <div class="wrap">
+            <Quotes items={quotes} />
+        </div>
+    </section>
 
-  <section class="block tone-bone" data-tone="light" id="testimonials" aria-label="Testimonials">
-    <div class="wrap">
-      <Quotes items={quotes} />
-    </div>
-  </section>
+    <section
+        class="block tone-ink"
+        data-tone="dark"
+        id="locations"
+        aria-label="Locations"
+    >
+        <div class="wrap">
+            <NycSection />
+        </div>
+    </section>
 
-  <DynamicMotion />
-
-  <section class="block tone-ink" data-tone="dark" id="locations" aria-label="Locations">
-    <div class="wrap">
-      <NycSection />
-    </div>
-  </section>
-
-  <section class="block tone-cream" data-tone="light" id="journal" aria-label="Journal">
-    <div class="wrap">
-      <JournalSection />
-    </div>
-  </section>
+    <section
+        class="block tone-cream"
+        data-tone="light"
+        id="journal"
+        aria-label="Journal"
+    >
+        <div class="wrap">
+            <JournalSection />
+        </div>
+    </section>
 </BaseLayout>
