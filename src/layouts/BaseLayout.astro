@@ -24,9 +24,7 @@ const isHome = Astro.url.pathname === '/';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href="/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/spacegrotesk-var.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/jetbrainsmono-var.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- fonts are inlined as data URIs in CSS: zero font requests, zero swap -->
     <Seo title={title} description={description} path={path} image={image} articleDate={articleDate} noindex={noindex} />
     <ClientRouter />
   </head>
