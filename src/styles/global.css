@@ -6,11 +6,11 @@
    (size/ascent/descent/line-gap overrides) so fallback boxes equal webfont
    boxes - swaps reflow nothing. Covers Arial-metric systems (Windows Arial,
    Linux Liberation). */
-@font-face{font-family:"Anton-FB";src:local("Arial"),local("Liberation Sans");size-adjust:103.76%;ascent-override:117.63%;descent-override:32.91%;line-gap-override:0%;}
-@font-face{font-family:"SG-FB";src:local("Arial"),local("Liberation Sans");size-adjust:120.98%;ascent-override:98.4%;descent-override:29.2%;line-gap-override:0%;font-weight:400;}
-@font-face{font-family:"SG-FB";src:local("Arial"),local("Liberation Sans");size-adjust:121.88%;ascent-override:98.4%;descent-override:29.2%;line-gap-override:0%;font-weight:500;}
-@font-face{font-family:"SG-FB";src:local("Arial"),local("Liberation Sans");size-adjust:122.56%;ascent-override:98.4%;descent-override:29.2%;line-gap-override:0%;font-weight:700;}
-@font-face{font-family:"JBM-FB";src:local("Courier New"),local("Liberation Mono");size-adjust:99.98%;ascent-override:102%;descent-override:30%;line-gap-override:0%;font-weight:400 700;}
+@font-face{font-family:"Anton-FB";src:local("Arial"),local("Liberation Sans");size-adjust:71%;ascent-override:117.63%;descent-override:32.91%;line-gap-override:0%;}
+@font-face{font-family:"SG-FB";src:local("Arial"),local("Liberation Sans");size-adjust:107%;ascent-override:98.4%;descent-override:29.2%;line-gap-override:0%;font-weight:400;}
+@font-face{font-family:"SG-FB";src:local("Arial"),local("Liberation Sans");size-adjust:107%;ascent-override:98.4%;descent-override:29.2%;line-gap-override:0%;font-weight:500;}
+@font-face{font-family:"SG-FB";src:local("Arial"),local("Liberation Sans");size-adjust:108%;ascent-override:98.4%;descent-override:29.2%;line-gap-override:0%;font-weight:700;}
+@font-face{font-family:"JBM-FB";src:local("Courier New"),local("Liberation Mono");size-adjust:100%;ascent-override:102%;descent-override:30%;line-gap-override:0%;font-weight:400 700;}
 /* KINETIC — design system. Mobile-first. Container 1400px. Fonts: Anton / Space Grotesk / JetBrains Mono. */
 
 :root {
