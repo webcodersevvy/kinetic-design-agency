@@ -32,12 +32,14 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  cursor: none;
   transition: background-color 0.6s ease, color 0.6s ease;
 }
+/* custom cursor takes over only after the Cursor island hydrates —
+   otherwise users get no visible pointer at all */
+body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 body[data-theme="cream"] { background: var(--cream); color: #0a0a0b; }
-a { color: inherit; text-decoration: none; cursor: none; }
-button { cursor: none; font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
 img { display: block; max-width: 100%; }
 ::selection { background: var(--lime); color: #000; }
 :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }

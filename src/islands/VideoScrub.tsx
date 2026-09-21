@@ -1,15 +1,26 @@
-import { onCleanup, onMount } from 'solid-js';
+import { createSignal, onCleanup, onMount } from 'solid-js';
 import { prefersReducedMotion } from '../lib/browser';
+
+const POSTER = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=70&auto=format&fit=crop';
+const SRC = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
 
 /**
  * Scroll-driven video scrubbing: scroll position drives video.currentTime.
- * Uses an open CC0 sample so no build asset is required.
+ * The 1.1MB video never blocks initial load — the element mounts only after
+ * browser idle and uses preload="metadata" (duration only) until scrubbed.
  */
 export default function VideoScrub() {
   let video!: HTMLVideoElement;
   let bar!: HTMLDivElement;
+  const [ready, setReady] = createSignal(false);
 
   onMount(() => {
+    const schedule = (cb: () => void) =>
+      'requestIdleCallback' in window
+        ? (window as Window & { requestIdleCallback: (c: () => void, o?: object) => number }).requestIdleCallback(() => cb(), { timeout: 2500 })
+        : setTimeout(cb, 1500);
+    const id = schedule(() => setReady(true));
+
     let st: { kill: () => void } | null = null;
     let cancelled = false;
     (async () => {
@@ -17,7 +28,8 @@ export default function VideoScrub() {
         const { ensureGsap } = await import('../lib/browser');
         const { gsap, ScrollTrigger } = await ensureGsap();
         if (cancelled || !ScrollTrigger) return;
-        const setDur = () => {
+        const setup = () => {
+          if (!video || cancelled) return;
           const d = Number.isFinite(video.duration) ? video.duration : 0;
           if (d <= 0) return;
           const obj = { t: 0 };
@@ -32,47 +44,79 @@ export default function VideoScrub() {
               onUpdate: (self) => {
                 try {
                   video.currentTime = obj.t;
-                } catch { /* noop */ }
+                } catch {
+                  /* noop */
+                }
                 if (bar) bar.style.transform = `scaleX(${self.progress})`;
               },
             },
           });
           st = { kill: () => tween.scrollTrigger?.kill() };
         };
-        if (video.readyState >= 1) setDur();
-        else video.addEventListener('loadedmetadata', setDur, { once: true });
-      } catch { /* static video fallback */ }
+        // wait for the video element (mounts on idle) before wiring metadata
+        const wait = setInterval(() => {
+          if (cancelled) {
+            clearInterval(wait);
+            return;
+          }
+          if (video) {
+            clearInterval(wait);
+            if (video.readyState >= 1) setup();
+            else video.addEventListener('loadedmetadata', setup, { once: true });
+          }
+        }, 300);
+        onCleanup(() => clearInterval(wait));
+      } catch {
+        /* static video fallback */
+      }
     })();
     if (prefersReducedMotion()) {
-      video.pause();
+      video?.pause();
     }
     onCleanup(() => {
       cancelled = true;
+      if (typeof id === 'number') {
+        try {
+          (window as Window & { cancelIdleCallback?: (n: number) => void }).cancelIdleCallback?.(id);
+        } catch {
+          clearTimeout(id);
+        }
+      }
       st?.kill();
     });
   });
 
+  const boxStyle = {
+    position: 'relative',
+    overflow: 'hidden',
+    'border-radius': '18px',
+    border: '1px solid var(--line)',
+    background: '#000',
+  } as const;
+  const mediaStyle = {
+    width: '100%',
+    height: 'min(46vw, 300px)',
+    'object-fit': 'cover',
+    display: 'block',
+  } as const;
+
   return (
     <div id="videoScrub" style={{ 'margin-top': '18px' }}>
-      <div
-        style={{
-          position: 'relative',
-          overflow: 'hidden',
-          'border-radius': '18px',
-          border: '1px solid var(--line)',
-          background: '#000',
-        }}
-      >
-        <video
-          ref={video!}
-          muted
-          playsinline
-          preload="auto"
-          poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80&auto=format&fit=crop"
-          src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-          style={{ width: '100%', height: 'min(46vw, 300px)', 'object-fit': 'cover', display: 'block' }}
-          aria-label="Scroll-scrubbed motion study"
-        />
+      <div style={boxStyle}>
+        {ready() ? (
+          <video
+            ref={video!}
+            muted
+            playsinline
+            preload="metadata"
+            poster={POSTER}
+            src={SRC}
+            style={mediaStyle}
+            aria-label="Scroll-scrubbed motion study"
+          />
+        ) : (
+          <img src={POSTER} alt="Motion study preview" loading="lazy" decoding="async" style={mediaStyle} />
+        )}
         <span class="scrub-hint">Scroll to scrub ▸ motion study 001</span>
       </div>
       <div

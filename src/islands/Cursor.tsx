@@ -6,6 +6,7 @@ export default function Cursor() {
   let label!: HTMLSpanElement;
 
   onMount(() => {
+    document.body.classList.add('has-cursor');
     if (window.matchMedia('(hover: none)').matches) return;
     let mx = innerWidth / 2;
     let my = innerHeight / 2;

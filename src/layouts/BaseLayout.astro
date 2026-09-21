@@ -26,7 +26,7 @@ const isHome = Astro.url.pathname === '/';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <Seo title={title} description={description} path={path} image={image} articleDate={articleDate} noindex={noindex} />
@@ -53,8 +53,8 @@ const isHome = Astro.url.pathname === '/';
 
     <SmoothScroll client:load />
     <ScrollEffects client:load />
-    <Clocks client:load />
-    <HeaderTheme client:load />
+    <Clocks client:idle />
+    <HeaderTheme client:idle />
     <MobileMenu client:load />
     <ShowreelModal client:load />
   </body>

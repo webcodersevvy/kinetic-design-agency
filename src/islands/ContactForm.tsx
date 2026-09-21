@@ -1,6 +1,4 @@
 import { createSignal } from 'solid-js';
-import * as z from 'zod';
-import { ContactSchema } from '../lib/site';
 
 type Fields = { name: string; email: string; budget: string; timeline: string; message: string };
 
@@ -25,20 +23,28 @@ export default function ContactForm() {
 
   const submit = (e: Event) => {
     e.preventDefault();
-    const parsed = ContactSchema.safeParse(fields());
-    if (!parsed.success) {
-      // Zod 4: treeified error gives per-field message arrays
-      const tree = z.treeifyError(parsed.error) as unknown as FieldTree;
-      setErrors({
-        name: firstError(tree, 'name'),
-        email: firstError(tree, 'email'),
-        message: firstError(tree, 'message'),
-      });
-      return;
-    }
-    setErrors({});
+    if (state() !== 'idle') return;
     setState('sending');
-    setTimeout(() => setState('done'), 900);
+    // Zod (~80KB) loads only when the user actually submits
+    Promise.all([import('../lib/site'), import('zod')]).then(
+      ([{ ContactSchema }, zmod]) => {
+        const parsed = ContactSchema.safeParse(fields());
+        if (!parsed.success) {
+          // Zod 4: treeified error gives per-field message arrays
+          const tree = zmod.treeifyError(parsed.error) as unknown as FieldTree;
+          setErrors({
+            name: firstError(tree, 'name'),
+            email: firstError(tree, 'email'),
+            message: firstError(tree, 'message'),
+          });
+          setState('idle');
+          return;
+        }
+        setErrors({});
+        setTimeout(() => setState('done'), 900);
+      },
+      () => setState('idle'),
+    );
   };
 
   return (
