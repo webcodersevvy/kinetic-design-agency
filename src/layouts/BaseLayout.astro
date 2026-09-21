@@ -24,7 +24,9 @@ const isHome = Astro.url.pathname === '/';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- fonts are inlined as data URIs in CSS: zero font requests, zero swap -->
+    <!-- deferred webfonts: fallback boxes already match, swap reflows nothing -->
+    <link rel="stylesheet" href="/fonts.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/fonts.css" /></noscript>
     <Seo title={title} description={description} path={path} image={image} articleDate={articleDate} noindex={noindex} />
     <ClientRouter />
   </head>
