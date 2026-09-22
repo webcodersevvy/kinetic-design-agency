@@ -5,10 +5,10 @@ export const site = {
   title: 'KINETIC® — Design & Motion Agency — New York City',
   description:
     'KINETIC is an independent design & motion agency in New York City. We make brands move — identity, motion, interactive & 3D.',
-  url: 'https://kinetic.nyc',
+  url: 'https://kinetic-design-agency.vercel.app',
   locale: 'en_US',
   address: '148 Grand St, 4th Floor, New York, NY 10013',
-  email: 'hello@kinetic.nyc',
+  email: 'hello-kineticagency@outlook.com',
   phone: '+1 212 555 0147',
   coords: '40.7128°N / 74.0060°W',
 } as const;

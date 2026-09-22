@@ -1,6 +1,6 @@
 # KINETIC® — Design & Motion Agency (Astro + SolidJS)
 
-Pixel-faithful rebuild of the KINETIC landing page with AstroJS, SolidJS islands,
+Pixel-faithful build of the KINETIC - Design and Motion Agency with AstroJS, SolidJS islands,
 TypeScript, Zod, GSAP ScrollTrigger, Lenis smooth scroll and raw WebGL shaders.
 
 ## Stack (latest, Sep 2026)

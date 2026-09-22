@@ -31,6 +31,20 @@ const isHome = Astro.url.pathname === '/';
     <ClientRouter />
   </head>
   <body>
+    <script is:inline>
+      (function () {
+        var t = setTimeout(function () {
+          document.body.classList.add('is-idle');
+        }, 1800);
+        function wake() {
+          clearTimeout(t);
+          document.body.classList.remove('is-idle');
+        }
+        ['pointerdown', 'pointermove', 'wheel', 'keydown', 'touchstart'].forEach(function (e) {
+          window.addEventListener(e, wake, { passive: true });
+        });
+      })();
+    </script>
     <a class="skip" href="#main">Skip to content</a>
     <div class="noise" aria-hidden="true"></div>
     <Cursor client:load />
