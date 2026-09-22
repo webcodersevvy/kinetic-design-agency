@@ -6,8 +6,8 @@ const awards: CollectionEntry<'awards'>[] = (await getCollection('awards')).sort
 ---
 <div class="awards" id="awards" aria-label="Awards">
   <div class="sec-head reveal">
-    <div><div class="kicker">Recognition</div><h2 class="sec-title">Award shelf<br /><em>keeps growing</em></h2></div>
-    <a class="btn btn-ghost magnetic" href={home ? '#contact' : '/#contact'} data-hover>Become next →</a>
+    <div><div class="kicker">05 · Shelf & citations</div><h2 class="sec-title">Nice things, <em>in public</em></h2></div>
+    <a class="btn btn-ghost magnetic" href={home ? '#contact' : '/#contact'} data-hover>Join the shelf →</a>
   </div>
   <div class="reveal">
     {awards.map((a) => (

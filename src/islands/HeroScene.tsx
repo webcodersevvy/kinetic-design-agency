@@ -109,7 +109,7 @@ export default function HeroScene() {
           const glow = Math.max(0, 1 - d / 380);
           ctx.strokeStyle =
             d < 380
-              ? `rgba(214,255,63,${(0.12 + glow * 0.5).toFixed(3)})`
+              ? `rgba(233,168,37,${(0.12 + glow * 0.5).toFixed(3)})`
               : `rgba(255,255,255,${(0.05 + p.s * 0.04).toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);

@@ -12,7 +12,7 @@ TypeScript, Zod, GSAP ScrollTrigger, Lenis smooth scroll and raw WebGL shaders.
 - **Motion 13** — triggered micro-interactions (`inView` reveals, tweened count-ups, spring releases, quote transitions, preloader tween)
 - **Lenis 1.3** — smooth scrolling via `autoRaf` + native `anchors`, `lenis.css`, ScrollTrigger sync
 - **Raw WebGL (GLSL)** — hero flow-shader + CTA grain shader, DPR-capped, pause offscreen
-- **Fonts** — Anton / Space Grotesk / JetBrains Mono (Google Fonts, `display=swap`)
+- **Fonts** — Fraunces (display serif) / Archivo (grotesque) / IBM Plex Mono, OFL-licensed latin subsets vendored in `public/fonts`, served via deferred `public/fonts.css`; empirically-tuned metric-matched local fallbacks
 
 ## Commands
 
@@ -41,8 +41,8 @@ npx tsc --noEmit # typecheck
   inversion), MobileMenu, ShowreelModal
 - `src/lib/` — `site.ts` (config + Zod), `palettes.ts` (work-grid art),
   `shaders.ts` (GLSL), `browser.ts`, `hooks.ts`
-- `src/styles/global.css` — mobile-first design system, `--max: 1400px`,
-  alternating section tones (`tone-*` + `data-tone` light/dark overrides)
+- `src/styles/global.css` — mobile-first editorial design system, `--max: 1400px`,
+  paper/pine/ember/gold tones (`tone-*` + `data-tone` light/dark overrides)
 
 ## Scroll effects (all in `ScrollEffects` + `VideoScrub`)
 

@@ -4,28 +4,28 @@ export type AccEntry = { title: string; body: string; tags: string[]; meta: [str
 
 const DEFAULTS: AccEntry[] = [
   {
-    title: 'Brand Identity',
-    body: 'Logos that flex, systems that scale. Naming, visual identity, guidelines and toolkits built motion-first from day one.',
-    tags: ['Naming', 'Logo & type', 'Guidelines', 'Art direction'],
-    meta: ['From $25k', 'Timeline 4–6 weeks', '→ 48 brands'],
+    title: 'Naming & Identity',
+    body: 'Names that stick and marks that move. Wordmarks, systems and guidelines drawn motion-first, so the logo behaves on screen one as well as it sits on paper.',
+    tags: ['Naming', 'Wordmarks', 'Guidelines', 'Voice & tone'],
+    meta: ['From $18k', 'Weeks 4–6', '→ 36 identities'],
   },
   {
-    title: 'Motion & Animation',
-    body: 'Launch films, title sequences, explainers, loops and broadcast packages. 2D, cel, mixed-media — board to final mix.',
-    tags: ['Launch films', 'Titles', 'Explainers', 'Lottie / Loops'],
-    meta: ['From $18k', 'Timeline 3–5 weeks', '→ 120+ films'],
+    title: 'Film & Animation',
+    body: 'Launch films, title design, explainers and loops with a grade you can recognize blind. Boards to final mix, all in-house.',
+    tags: ['Launch films', 'Titles', 'Explain­ers', 'Loops & Lottie'],
+    meta: ['From $14k', 'Weeks 3–5', '→ 90+ films'],
   },
   {
     title: 'Web & Interactive',
-    body: 'Awwwards-grade marketing sites, e-comm and WebGL experiences. Design + creative dev in-house, CMS you’ll actually use.',
-    tags: ['Creative dev', 'WebGL / Shaders', 'E-commerce', 'Design systems'],
-    meta: ['From $30k', 'Timeline 5–8 weeks', '→ 9× SOTD'],
+    body: 'Storefronts, campaign sites and real-time visual engines. Designed and built by the same nineteen people, on a CMS you will actually enjoy.',
+    tags: ['Storefronts', 'Real-time', 'E-commerce', 'Design systems'],
+    meta: ['From $24k', 'Weeks 5–8', '→ 40+ launches'],
   },
   {
     title: '3D & CGI',
-    body: 'Product renders, world-building, simulations and virtual sets. Octane / Houdini pipeline with real-time previews.',
-    tags: ['Product CGI', 'Houdini FX', 'Virtual sets', 'AR filters'],
-    meta: ['From $20k', 'Timeline 3–6 weeks', '→ 80M renders'],
+    body: 'Product renders, world-building and full-CG sets. A small render farm, strong opinions about light, and previews while you wait.',
+    tags: ['Product CGI', 'Worlds', 'Virtual sets', 'Stills'],
+    meta: ['From $16k', 'Weeks 3–6', '→ Millions of pixels'],
   },
 ];
 

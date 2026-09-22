@@ -33,7 +33,7 @@ const slugOf = (e: CollectionEntry<'work'>) => e.id.replace(/\.mdx?$/, '').split
         <img src={entry.data.cover} alt={entry.data.coverAlt} style="width:100%;max-height:60vh;object-fit:cover" fetchpriority="high" />
       </div>
       <div class="mani-meta">
-        {entry.data.categories.map((c) => <span class="chip" style="border-color:var(--line);color:var(--cream)">{c}</span>)}
+        {entry.data.categories.map((c) => <span class="chip" style="border-color:var(--line);color:var(--paper)">{c}</span>)}
         <span class="chip solid">✦ {entry.data.tagDark}</span>
       </div>
       <article style="max-width:68ch;margin-top:22px;color:#cfcbc2">

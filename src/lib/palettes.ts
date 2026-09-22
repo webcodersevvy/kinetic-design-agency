@@ -4,12 +4,12 @@
 export type Palette = { a: string; b: string; c: string };
 
 export const palettes: Palette[] = [
-  { a: '#d6ff3f', b: '#7b5cff', c: '#101014' }, // 01 Neon Pulse — lime / violet
-  { a: '#3fd9ff', b: '#7b5cff', c: '#0c1420' }, // 02 Halcyon — cyan / violet
-  { a: '#ff3fa4', b: '#ff4d00', c: '#160d12' }, // 03 Canvas — magenta / orange
-  { a: '#7b5cff', b: '#3fd9ff', c: '#0d0d1a' }, // 04 Midnight — violet / cyan
-  { a: '#ff4d00', b: '#d6ff3f', c: '#161006' }, // 05 Ritual — orange / lime
-  { a: '#ffb300', b: '#3fd9ff', c: '#12100a' }, // 06 Arc — amber / cyan
+  { a: '#e8442e', b: '#e9a825', c: '#1c0f0a' }, // 01 Full Sprint — ember / gold
+  { a: '#e9a825', b: '#7aa088', c: '#141007' }, // 02 Coppr — gold / fern
+  { a: '#7aa088', b: '#e8442e', c: '#0d1512' }, // 03 Orbit — fern / ember
+  { a: '#e8442e', b: '#f4efe3', c: '#170d0a' }, // 04 Harbor — ember / paper
+  { a: '#e9a825', b: '#e8442e', c: '#151006' }, // 05 Fieldday — gold / ember
+  { a: '#7aa088', b: '#e9a825', c: '#0e130f' }, // 06 Mesa — fern / gold
 ];
 
 /** Inline custom-property string consumed by .proj-art CSS. */

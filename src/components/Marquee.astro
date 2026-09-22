@@ -5,7 +5,7 @@ const { items, id, lime = false, duration = 28 } = Astro.props as Props;
 // identical half makes translateX(-50%) loop seamlessly.
 const half = [...items, ...items, ...items];
 ---
-<div class={lime ? 'marquee marquee-lime' : 'marquee'}>
+<div class={lime ? 'marquee marquee-ember' : 'marquee'}>
   <div class="marquee-track" id={id} style={`--marquee-dur:${duration}s`}>
     <div class="marquee-half" aria-hidden="false">
       {half.map((t) => <span><i>●</i>{t}</span>)}

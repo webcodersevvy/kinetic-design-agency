@@ -4,11 +4,11 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 const posts: CollectionEntry<'journal'>[] = (await getCollection('journal')).sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
-<BaseLayout title="Journal — KINETIC® NYC" description="Notes in motion: process, 3D and culture from the Kinetic studio." path="/journal/">
+<BaseLayout title="Field Notes — KINETIC® NYC" description="Process notes, craft essays and studio culture from Greene Street." path="/journal/">
   <section class="page-hero">
     <div class="wrap">
-      <div class="kicker">Journal — Signal, no noise</div>
-      <h1 class="sec-title">Notes in<br /><em>motion</em></h1>
+      <div class="kicker">07 · Field notes — Thinking out loud</div>
+      <h1 class="sec-title">Notes from <em>the studio</em></h1>
       <div class="page-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
         {posts.map((p) => (
           <a class="j-card" href={`/journal/${p.id.replace(/\.mdx?$/, '').split('/').pop()}/`} data-hover>

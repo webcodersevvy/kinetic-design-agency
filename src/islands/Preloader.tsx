@@ -41,7 +41,7 @@ export default function Preloader() {
         <div class="pre-fill" ref={fill!} id="preFill" />
       </div>
       <div class="pre-meta">
-        <span>NYC — 40.7128°N / 74.0060°W</span>
+        <span>NYC — 40.71°N / 74.00°W</span>
         <span ref={pct!} id="prePct">
           0%
         </span>

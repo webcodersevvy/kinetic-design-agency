@@ -5,11 +5,11 @@ import { artNumeral, paletteVars } from '../../lib/palettes';
 
 const work: CollectionEntry<'work'>[] = (await getCollection('work')).sort((a, b) => b.data.year.localeCompare(a.data.year));
 ---
-<BaseLayout title="Work — KINETIC® NYC" description="Selected brand worlds, films and interactive sites by KINETIC NYC." path="/work/">
+<BaseLayout title="Work — KINETIC® NYC" description="Launches, titles, stores and visual engines from the Kinetic studio." path="/work/">
   <section class="page-hero">
     <div class="wrap">
-      <div class="kicker">Selected work — 2024 → 2026</div>
-      <h1 class="sec-title">Work that<br /><em>moves people</em></h1>
+      <div class="kicker">02 · The folio — 2024 → 2026</div>
+      <h1 class="sec-title">Work with <em>a heartbeat</em></h1>
       <div class="page-grid">
         {work.map((w, i) => (
           <article class="proj" data-cursor="View case" style={`min-height:380px;${paletteVars(i)}`}>

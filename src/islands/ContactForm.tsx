@@ -52,7 +52,7 @@ export default function ContactForm() {
       <div class="f-row">
         <div class="field">
           <label for="cf-name">Name *</label>
-          <input id="cf-name" placeholder="Jane Doe" value={fields().name} onInput={set('name')} autocomplete="name" />
+          <input id="cf-name" placeholder="June Park" value={fields().name} onInput={set('name')} autocomplete="name" />
           {errors().name && <div class="field-error">{errors().name}</div>}
         </div>
         <div class="field">
@@ -60,7 +60,7 @@ export default function ContactForm() {
           <input
             id="cf-email"
             type="email"
-            placeholder="jane@company.com"
+            placeholder="june@fieldday.co"
             value={fields().email}
             onInput={set('email')}
             autocomplete="email"
@@ -91,7 +91,7 @@ export default function ContactForm() {
         <label for="cf-msg">What should move?</label>
         <textarea
           id="cf-msg"
-          placeholder="Launch film, rebrand, website… tell us the dream + deadline"
+          placeholder="A launch film, a rename, a store — tell us the dream and the deadline"
           value={fields().message}
           onInput={set('message')}
         />
@@ -105,7 +105,7 @@ export default function ContactForm() {
         id="sendBtn"
         disabled={state() !== 'idle'}
       >
-        {state() === 'idle' ? 'Send brief →' : state() === 'sending' ? 'Sending…' : '✓ Brief received — talk in 24h'}
+        {state() === 'idle' ? 'Send it over →' : state() === 'sending' ? 'Sending…' : '✓ Received — talk in two days'}
       </button>
     </form>
   );

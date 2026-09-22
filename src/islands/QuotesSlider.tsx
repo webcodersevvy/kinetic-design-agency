@@ -5,22 +5,22 @@ export type Quote = { quote: string; name: string; role: string; avatar: string 
 
 const FALLBACK: Quote[] = [
   {
-    quote: '“Kinetic took a 40-slide deck and turned it into a launch film our whole company cried at. Then the internet watched it <span>48 million times.</span>”',
-    name: 'Maya Chen — VP Brand, Nike NYC',
-    role: 'Air Max “Neon Pulse” — 2026',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80&auto=format&fit=crop',
+    quote: '“Kinetic turned our launch into a short film our customers quote back to us. Then thirty-one million of them <span>watched it.</span>”',
+    name: 'Dana Whitfield — CMO, Velvetline',
+    role: 'Velvetline “Full Sprint” — 2026',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80&auto=format&fit=crop',
   },
   {
-    quote: '“Fastest senior team we’ve ever worked with. Boards on Monday, <span>moving pixels by Friday.</span> No agency theatre.”',
-    name: 'Jonas Reid — Founder, Halcyon',
-    role: 'Full rebrand + motion system — 2025',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&auto=format&fit=crop',
+    quote: '“Boards on Monday, <span>moving pictures by Friday.</span> Nobody performs process here.”',
+    name: 'Marcus Oyelaran — Founder, Coppr',
+    role: 'Coppr identity — 2025',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80&auto=format&fit=crop',
   },
   {
-    quote: '“They think in systems, not deliverables. Our site, our ads, our app — <span>one kinetic language.</span> Conversion up 64%.”',
-    name: 'Priya Nair — CMO, Ritual',
-    role: 'Ritual.com + CGI — 2025',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&auto=format&fit=crop',
+    quote: '“One visual language across our app, our ads and our stage. <span>Sign-ups up forty percent.</span>”',
+    name: 'Sofia Marchetti — Head of Brand, Orbit FM',
+    role: 'Orbit visuals engine — 2025',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80&auto=format&fit=crop',
   },
 ];
 
@@ -70,7 +70,7 @@ export default function QuotesSlider(props: { items?: Quote[] }) {
       <div class="quote-side">
         <img
           src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80&auto=format&fit=crop"
-          alt="Kinetic launch event"
+          alt="Studio premiere night"
           loading="lazy"
         />
       </div>

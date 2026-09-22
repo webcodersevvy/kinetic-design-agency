@@ -2,15 +2,15 @@ import * as z from 'zod';
 
 export const site = {
   name: 'KINETIC®',
-  title: 'KINETIC® — Design & Motion Agency — New York City',
+  title: 'KINETIC® — Independent Design & Motion Studio — New York',
   description:
-    'KINETIC is an independent design & motion agency in New York City. We make brands move — identity, motion, interactive & 3D.',
+    'Kinetic is an independent design and motion studio in New York City turning companies into characters — naming, identity, film, interactive and 3D with a heartbeat.',
   url: 'https://kinetic-design-agency.vercel.app',
   locale: 'en_US',
-  address: '148 Grand St, 4th Floor, New York, NY 10013',
+  address: '77 Greene St, 3rd Floor, New York, NY 10012',
   email: 'hello-kinetic-agency@outlook.com',
   phone: '+1 212 555 0147',
-  coords: '40.7128°N / 74.0060°W',
+  coords: '40.71°N / 74.00°W',
 } as const;
 
 export const ContactSchema = z.object({

@@ -37,10 +37,10 @@ void main(){
   float flow = fbm(st * 1.4 + vec2(t, -t*0.7) + fbm(st*2.0 - t)*0.9);
   float lines = smoothstep(0.35, 0.75, flow);
 
-  vec3 base = vec3(0.039, 0.039, 0.043);
-  vec3 lime = vec3(0.839, 1.0, 0.247);
-  vec3 violet = vec3(0.482, 0.361, 1.0);
-  vec3 orange = vec3(1.0, 0.302, 0.0);
+  vec3 base = vec3(0.059, 0.114, 0.098);
+  vec3 ember = vec3(0.910, 0.267, 0.180);
+  vec3 gold = vec3(0.914, 0.659, 0.145);
+  vec3 fern = vec3(0.478, 0.627, 0.533);
 
   float dMouse = distance(uv, u_mouse);
   float mGlow = smoothstep(0.55, 0.0, dMouse);
@@ -49,11 +49,11 @@ void main(){
   float oOrb = smoothstep(0.9, 0.0, distance(uv, vec2(0.15, 0.2)));
 
   vec3 col = base;
-  col += violet * vOrb * (0.35 + lines*0.35);
-  col += orange * oOrb * (0.30 + (1.0-lines)*0.25);
-  col += lime * mGlow * (0.25 + lines*0.45);
+  col += fern * vOrb * (0.35 + lines*0.35);
+  col += ember * oOrb * (0.30 + (1.0-lines)*0.25);
+  col += gold * mGlow * (0.25 + lines*0.45);
   col += vec3(1.0) * lines * 0.045;
-  col += (lime * 0.06 + violet * 0.05) * fbm(st*3.0 + t);
+  col += (gold * 0.06 + ember * 0.05) * fbm(st*3.0 + t);
 
   // subtle vignette
   float vig = smoothstep(1.25, 0.35, distance(uv, vec2(0.5)));
