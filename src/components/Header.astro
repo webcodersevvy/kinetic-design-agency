@@ -2,30 +2,57 @@
 type Props = { home?: boolean };
 const { home = false } = Astro.props as Props;
 ---
+
 <header id="top">
-  <div class="nav-inner">
-    <a class="logo magnetic" href="/" data-hover aria-label="Kinetic home">KINETIC<sup>®</sup></a>
-    <nav class="pill-nav" aria-label="Primary">
-      <a href="/work/" data-hover>Work</a>
-      <a href="/studio/" data-hover>Studio</a>
-      <a href="/capabilities/" data-hover>Capabilities</a>
-      <a href="/awards/" data-hover>Awards</a>
-      <a href="/journal/" data-hover>Journal</a>
-    </nav>
-    <div class="nav-right">
-      <div class="live-dot" aria-live="off"><b aria-hidden="true"></b><span data-clock-nav id="navClock">NYC 00:00</span>&nbsp;·&nbsp;BOOKING Q3</div>
-      <a class="btn btn-lime magnetic" href={home ? '#contact' : '/contact/'} data-hover>Start a project ↗</a>
-      <button class="burger" id="burger" aria-label="Open menu">☰</button>
+    <div class="nav-inner">
+        <a class="logo magnetic" href="/" data-hover aria-label="Kinetic home">
+            KINETIC<sup>®</sup>
+        </a>
+        <nav class="pill-nav" aria-label="Primary">
+            <a href="/work/" data-hover>
+                Work
+            </a>
+            <a href="/studio/" data-hover>
+                Studio
+            </a>
+            <a href="/capabilities/" data-hover>
+                Capabilities
+            </a>
+            <a href="/awards/" data-hover>
+                Awards
+            </a>
+            <a href="/journal/" data-hover>
+                Journal
+            </a>
+        </nav>
+        <div class="nav-right">
+            <div class="live-dot" aria-live="off">
+                <b aria-hidden="true"></b>
+                <span data-clock-nav id="navClock">
+                    NYC 00:00
+                </span>
+                &nbsp;·&nbsp;BOOKING Q3
+            </div>
+            <a
+                class="btn btn-lime magnetic"
+                href={home ? "#contact" : "/contact/"}
+                data-hover
+            >
+                Start a project ↗
+            </a>
+            <button class="burger" id="burger" aria-label="Open menu">
+                ☰
+            </button>
+        </div>
     </div>
-  </div>
 </header>
 
 <div class="mmenu" id="mmenu" aria-hidden="true">
-  <small>Menu — Kinetic NYC</small>
-  <a href="/work/">Work</a>
-  <a href="/studio/">Studio</a>
-  <a href="/capabilities/">Capabilities</a>
-  <a href="/awards/">Awards</a>
-  <a href="/contact/">Contact →</a>
-  <small style="margin-top:18px">hello@kinetic.nyc — +1 212 555 0147</small>
+    <small>Menu — Kinetic NYC</small>
+    <a href="/work/">Work</a>
+    <a href="/studio/">Studio</a>
+    <a href="/capabilities/">Capabilities</a>
+    <a href="/awards/">Awards</a>
+    <a href="/contact/">Contact →</a>
+    <small style="margin-top:18px">hello@kinetic.nyc — +1 212 555 0147</small>
 </div>

@@ -8,7 +8,7 @@ export const site = {
   url: 'https://kinetic-design-agency.vercel.app',
   locale: 'en_US',
   address: '148 Grand St, 4th Floor, New York, NY 10013',
-  email: 'hello-kineticagency@outlook.com',
+  email: 'hello-kinetic-agency@outlook.com',
   phone: '+1 212 555 0147',
   coords: '40.7128°N / 74.0060°W',
 } as const;
